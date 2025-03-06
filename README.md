@@ -1,18 +1,17 @@
 # Agent-Based Simulation used for generating Figure 4 in: Rozzi, R., Giovannetti, A., Pin, A. and Campana, P. Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K.
 
 ## Overview
-This repository contains MATLAB code for generating Figure 4 of the paper. The script is made of two components: **`simu_drug_markets.m`** and `simu_drug_markets.m`.  Artificial data is built through an Agent-Based-Model (ABM). The ABM explores the effects in terms of conflicts over areas, density of OCGs across areas and OCG for a range of values of the exploration intensity parameter eta. Figure 4 visualizes the frequency of violence, mean streak duration, and concentration levels across different locations.
-the artificial data used in
+This repository contains MATLAB code for generating Figure 4 of the paper. The script is made of two components: `simu_drug_markets.m` and `Figure4.m`. By running `Figure4.m`, an Agent-Based model (ABM) contained in the function  `simu_drug_markets.m` is automatically called to generate artificial data. The script uses the artificial data to generate Figure 4 of the main paper. The purpose of the ABM model is to explore the effects in terms of conflicts over areas, density of OCGs across areas and OCG turnover for a range of values of the exploration intensity parameter eta (described in the main text). Figure 4 visualizes the frequency of violence, mean streak duration, and concentration levels across different locations.
+
 ## Contents
-- **`simu_drug_markets.m`**: The core function that runs the agent-based simulation.
-- **Simulation script**: Calls `simu_drug_markets.m` to run the model and compute key statistics.
-- **Figure generation script**: Uses the simulation results to generate Figure 4, displaying violence, stability, and concentration levels across areas.
+- **`simu_drug_markets.m`**: The core function that runs the agent-based simulation. 
+- **Figure4.m**: First, it calls `simu_drug_markets.m` to run the model and compute key statistics. Second, it uses the simulation results to generate Figure 4, displaying violence, stability, and concentration levels across areas.
 
 ---
 
 ## 1. Agent-Based Simulation
 ### **Purpose**
-The simulation models how multiple OCGs interact in a competitive environment over a set of locations. It captures:
+The simulation models how multiple OCGs interact in a competitive environment over a set of locations. The model tracks:
 - How OCGs explore and occupy territories.
 - The frequency of violent conflicts when multiple OCGs target the same location.
 - The duration of stable control over a location (mean streak length).
@@ -42,7 +41,7 @@ The simulation can be executed by calling:
 [F, avgF_vec, avgtau_vec, mean_streaks, inc] = simu_drug_markets(U_l, c, t_end, eta_vec, N_ocgs, N_l);
 ```
 
-This function iterates over multiple time periods, tracking fights, territorial shifts, and OCG behavior.
+This function iterates over `t_end` time periods, tracking fights, territorial shifts, and OCG behavior.
 
 ---
 
@@ -52,55 +51,12 @@ This script uses the results from the agent-based simulation to visualize the re
 - The frequency of violence (red line)
 - The mean streak length (black line)
 - The concentration level of OCGs in each area (blue line)
-
-### **Plot Components**
-- **X-axis**: Areas, ordered from lowest to highest value.
-- **Left Y-axis (Red)**: Frequency of fights.
-- **Right Y-axis (Blue)**: Concentration level of OCGs.
-- **Dashed Black Line**: Mean streak length (periods of stable control).
-
-### **Running the Figure Generation Code**
-1. Ensure the simulation has been run with `eta = 10`.
-2. Execute the following script:
-   ```matlab
-   % Define the scaling factor for mean streak
-   scaler = 15;
-   
-   % Select the desired exploration intensity (eta)
-   eta = 10;
-   eta_scale = eta * 10;
-   
-   % Define x-axis ordering (reordering locations from lowest to highest value)
-   x = [10 9 8 7 6 5 4 3 2 1];
-   
-   % Plot the figure
-   figure;
-   set(gcf, 'Color', 'w');
-   
-   yyaxis left;
-   hold on;
-   plot(x, avgF_vec, 'r--o', 'LineWidth', 3, 'MarkerSize', 8, 'MarkerFaceColor', 'r');
-   plot(x, mean_streaks ./ scaler, 'k--o', 'LineWidth', 3, 'MarkerSize', 8, 'MarkerFaceColor', 'k');
-   hold off;
-   
-   yyaxis right;
-   plot(x, avgtau_vec, 'b--o', 'LineWidth', 3, 'MarkerSize', 8, 'MarkerFaceColor', 'b');
-   
-   % Customize axes and legend
-   xlabel('Areas');
-   legend({'Frequency of Violence', 'Mean Streak', 'Concentration Level'}, 'Location', 'north', 'FontSize', 12);
-   
-   % Save the figure as a PDF
-   print(gcf, 'fights_10_disaggregated_fig4', '-dpdf');
-   ```
-
-This will generate Figure 4, helping visualize how OCG behavior changes across different areas.
-
----
+ 
+### **To generate Figure 4**
+1. Simply download the two codes and run `simu_drug_markets.m` with default parameters.
+  
 
 ## **Citing This Work**
-If you use this code in your research, please cite accordingly.
+If you use this code in your research, please cite Rozzi, R., Giovannetti, A., Pin, A. and Campana, P. Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K.
 
 For questions or contributions, feel free to open an issue or submit a pull request.
-
-📌 **Author**: Andrea Giovannetti
