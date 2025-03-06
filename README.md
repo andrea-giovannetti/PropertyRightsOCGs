@@ -53,7 +53,7 @@ This script uses the results from the agent-based simulation to visualize the re
 - The concentration level of OCGs in each area (blue line)
  
 ### **To generate Figure 4**
-1. Simply download the two codes and run `simu_drug_markets.m` with default parameters.
+1. Simply download the files of this repository (`simu_drug_markets.m` and `Figure4.m`)  and run `simu_drug_markets.m` with default parameters.
   
 
 ## **Citing This Work**
