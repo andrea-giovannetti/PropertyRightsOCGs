@@ -1,8 +1,8 @@
-# Agent-Based Simulation of Drug Market Competition
+# Agent-Based Simulation used for generating Figure 4 in: Rozzi, R., Giovannetti, A., Pin, A. and Campana, P. Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K.
 
 ## Overview
-This repository contains MATLAB code for simulating drug market competition among Organized Crime Groups (OCGs). The simulation models territorial control, conflicts over areas, and the effect of exploration intensity on violence and stability in the market. Additionally, it includes code to generate Figure 4 from the main text, which visualizes the frequency of violence, mean streak duration, and concentration levels across different locations.
-
+This repository contains MATLAB code for generating Figure 4 of the paper. The script is made of two components: **`simu_drug_markets.m`** and `simu_drug_markets.m`.  Artificial data is built through an Agent-Based-Model (ABM). The ABM explores the effects in terms of conflicts over areas, density of OCGs across areas and OCG for a range of values of the exploration intensity parameter eta. Figure 4 visualizes the frequency of violence, mean streak duration, and concentration levels across different locations.
+the artificial data used in
 ## Contents
 - **`simu_drug_markets.m`**: The core function that runs the agent-based simulation.
 - **Simulation script**: Calls `simu_drug_markets.m` to run the model and compute key statistics.
