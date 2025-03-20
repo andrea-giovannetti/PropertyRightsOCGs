@@ -67,18 +67,18 @@ end
 
             if sum(sum( D(1:(t-1), :) )) > 0 % this is to cope with a situation where OCGs don't go out in period t=1 and hence priors are not generated
 
-                P(t,:) = 1 - sum( D(1:(t-1), :) , 1 )./(t-1); % this is a matrix where rows are periods (most recent at bottom) and columns are places
+                P(t,:) = 1 - sum( D(1:(t-1), :) , 1 )./(t-1); % this is a matrix where rows are periods (most recent at the bottom) and columns are places
 
-            else % else, if no OCG went out in the previous period and there is no probability apart from the initial prior (only happens at t=2), stick to initial probability
+            else % else, if no OCG went out in the previous period and there is no probability apart from the initial prior (only happens at t=2), hence stick to the initial probability
 
                 P(t,:) = P_0;
 
             end % end condition on prior prob
 
             % The below computes Q as a matrix where columns are locations and rows are OCGs.
-            % The activators (T1 == t-1) identify OCGs that visited places in t-1 or earlier. The activators (P == 0 or 1) identify corner cases. To match Netlogo reasoning, splitted the
-            % derivation of Q in two branches (T1 == t-1) and (T1 < t-1) but these can be unified and the condition removed. H
-            % Heavy use of matlab-logic which is formally inconsistent. Example: (1 - P) is a (scalar - matrix) operation which is correctly understood by Matlab as (matrix of 1 - matrix)
+            % The activators (T1 == t-1) identify OCGs that visited places in t-1 or earlier. The activators (P == 0 or 1) identify corner cases.
+            % The derivation of Q is split in two branches (T1 == t-1) and (T1 < t-1) to follow the design of a more general version of the model. However, the splitting has no implications in this version.  
+            % Note: the below uses matlab-logic which is formally inconsistent. Example: (1 - P) is a (scalar - matrix) operation, however, this is correctly understood by Matlab as (matrix of 1 - matrix)
 
             Q = (T1 == t-1).* ( ...
                 (P(t,:) == 1).*1 + (P(t,:) == 0).*0 + ...
@@ -121,7 +121,7 @@ end
                     ocg_visit_location_ordered = sort(V_ocg_shocked,'descend');  % order the preferences from top to worst ranked area.
                     [~, ~,ocg_visit_location_idx] = intersect(ocg_visit_location_ordered,V_ocg_shocked,'stable'); % this tells the column location in the V matrix of ordered locations
 
-                    % Once OCG i decided the order, OCG begin the exploration
+                    % Once OCG i decided the order, OCG begins the exploration
 
                     k = 1; % reset operator for the area exploration
 
@@ -213,7 +213,7 @@ end
 
     avgtau_vec(K,:) = mean(tau);
 
-% Compute the streak vector from the streak time series matrix. A zero value in the matrix implies that stability has been attained for the corresponding area (i.e. one OCG only target that area). 
+% Compute the streak vector from the streak time series matrix. A zero value in the matrix implies that stability has been attained for the corresponding area (i.e. one OCG only targets that area). 
 % Therefore, to compute the streak vector, non-zero values only from the matrix are considered 
 
 for i=1:N_l
