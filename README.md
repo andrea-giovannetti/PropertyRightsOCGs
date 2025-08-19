@@ -1,4 +1,4 @@
-# Replication code for Figure 4, Rozzi, R., Giovannetti, A., Pin, A. and Campana, P. Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K.
+# Replication code for Figure 4, Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K.
 
 ## Overview
 This repository contains MATLAB code for generating Figure 4, Rozzi, R., Giovannetti, A., Pin, A. and Campana, P. Endogenous Property Rights over Drug Markets: Theory and Evidence from Merseyside, U.K. The script is made of two components: `simu_drug_markets.m` and `Figure4.m`. By running `Figure4.m`, an Agent-Based model (ABM) contained in the function  `simu_drug_markets.m` is automatically called to generate artificial data. The script uses the artificial data to generate Figure 4 of the main paper. The purpose of the ABM model is to explore the effects in terms of conflicts over areas, density of OCGs across areas and OCG turnover for a range of values of the exploration intensity parameter eta (described in the main text). Figure 4 visualizes the frequency of violence, mean streak duration, and concentration levels across different locations.
